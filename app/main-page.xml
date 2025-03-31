@@ -1,0 +1,160 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Şövalyeler ve Tuarekler" icon="" class="action-bar">
+        <Label text="Şövalyeler ve Tuarekler" class="action-bar-title" />
+    </ActionBar>
+
+    <GridLayout>
+        <!-- Karakter Seçim Ekranı -->
+        <ScrollView visibility="{{ karakterSecimEkrani ? 'visible' : 'collapse' }}">
+            <StackLayout class="character-select">
+                <!-- Irk Seçimi -->
+                <Label text="Irkını Seç" class="section-title" />
+                <GridLayout columns="*, *" class="race-selection">
+                    <StackLayout col="0" tap="{{ irkSec }}" data-irk="insan" class="race-option {{ secilenIrk === 'insan' ? 'selected' : '' }}">
+                        <Image src="~/assets/human-race.png" class="race-image" />
+                        <Label text="İnsan" class="race-name" />
+                        <Label text="El Morad'ın Soylu Şövalyeleri" textWrap="true" class="race-desc" />
+                    </StackLayout>
+                    <StackLayout col="1" tap="{{ irkSec }}" data-irk="tuarek" class="race-option {{ secilenIrk === 'tuarek' ? 'selected' : '' }}">
+                        <Image src="~/assets/tuarek-race.png" class="race-image" />
+                        <Label text="Tuarek" class="race-name" />
+                        <Label text="Karus'un Güçlü Savaşçıları" textWrap="true" class="race-desc" />
+                    </StackLayout>
+                </GridLayout>
+
+                <!-- Sınıf Seçimi -->
+                <Label text="Sınıfını Seç" class="section-title" />
+                <GridLayout rows="auto, auto" columns="*, *, *" class="class-selection">
+                    <!-- Savaşçı Sınıfları -->
+                    <StackLayout row="0" col="0" tap="{{ sinifSec }}" data-sinif="warrior" class="class-option {{ secilenSinif === 'warrior' ? 'selected' : '' }}">
+                        <Image src="~/assets/warrior-class.png" class="class-image" />
+                        <Label text="Savaşçı" class="class-name" />
+                        <Label text="Güç: 10&#xA;Çeviklik: 6&#xA;Zeka: 4" textWrap="true" class="class-stats" />
+                    </StackLayout>
+                    
+                    <StackLayout row="0" col="1" tap="{{ sinifSec }}" data-sinif="rogue" class="class-option {{ secilenSinif === 'rogue' ? 'selected' : '' }}">
+                        <Image src="~/assets/rogue-class.png" class="class-image" />
+                        <Label text="Haydut" class="class-name" />
+                        <Label text="Güç: 6&#xA;Çeviklik: 10&#xA;Zeka: 4" textWrap="true" class="class-stats" />
+                    </StackLayout>
+                    
+                    <StackLayout row="0" col="2" tap="{{ sinifSec }}" data-sinif="assassin" class="class-option {{ secilenSinif === 'assassin' ? 'selected' : '' }}">
+                        <Image src="~/assets/assassin-class.png" class="class-image" />
+                        <Label text="Suikastçı" class="class-name" />
+                        <Label text="Güç: 5&#xA;Çeviklik: 9&#xA;Zeka: 6" textWrap="true" class="class-stats" />
+                    </StackLayout>
+
+                    <!-- Büyücü Sınıfları -->
+                    <StackLayout row="1" col="0" tap="{{ sinifSec }}" data-sinif="mage" class="class-option {{ secilenSinif === 'mage' ? 'selected' : '' }}">
+                        <Image src="~/assets/mage-class.png" class="class-image" />
+                        <Label text="Büyücü" class="class-name" />
+                        <Label text="Güç: 3&#xA;Çeviklik: 4&#xA;Zeka: 13" textWrap="true" class="class-stats" />
+                    </StackLayout>
+                    
+                    <StackLayout row="1" col="1" tap="{{ sinifSec }}" data-sinif="priest" class="class-option {{ secilenSinif === 'priest' ? 'selected' : '' }}">
+                        <Image src="~/assets/priest-class.png" class="class-image" />
+                        <Label text="Rahip" class="class-name" />
+                        <Label text="Güç: 4&#xA;Çeviklik: 3&#xA;Zeka: 13" textWrap="true" class="class-stats" />
+                    </StackLayout>
+                </GridLayout>
+
+                <!-- Karakter İsmi -->
+                <StackLayout class="name-selection">
+                    <Label text="Karakterinin İsmini Gir" class="section-title" />
+                    <TextField text="{{ karakterAdi }}" hint="Karakter İsmi" class="character-name-input" />
+                </StackLayout>
+
+                <!-- Başlat Butonu -->
+                <Button text="Maceraya Başla" tap="{{ karakterOlustur }}" class="start-button" />
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Oyun Ekranı -->
+        <GridLayout rows="auto, *, auto" visibility="{{ !karakterSecimEkrani ? 'visible' : 'collapse' }}">
+            <!-- Karakter Bilgileri -->
+            <StackLayout row="0" class="p-4 bg-gradient">
+                <GridLayout columns="auto, *" class="character-info">
+                    <Image col="0" src="{{ karakterAvatar }}" class="character-avatar" width="60" height="60" />
+                    <StackLayout col="1" class="ml-4">
+                        <Label text="{{ karakterAdi }}" class="text-2xl text-white character-name" />
+                        <Label text="{{ sinif }}" class="text-lg text-gray-200" />
+                    </StackLayout>
+                </GridLayout>
+                
+                <!-- Durum Çubukları -->
+                <GridLayout rows="auto, auto, auto" class="mt-2">
+                    <!-- Can Çubuğu -->
+                    <GridLayout row="0" columns="*, auto" class="progress-container">
+                        <StackLayout col="0" class="progress-bar">
+                            <StackLayout class="progress-fill health-bar" width="{{ (can / maxCan * 100) + '%' }}" />
+                        </StackLayout>
+                        <Label col="1" text="{{ can + '/' + maxCan }}" class="progress-text" />
+                    </GridLayout>
+                    
+                    <!-- Mana Çubuğu -->
+                    <GridLayout row="1" columns="*, auto" class="progress-container mt-1">
+                        <StackLayout col="0" class="progress-bar">
+                            <StackLayout class="progress-fill mana-bar" width="{{ (mana / maxMana * 100) + '%' }}" />
+                        </StackLayout>
+                        <Label col="1" text="{{ mana + '/' + maxMana }}" class="progress-text" />
+                    </GridLayout>
+
+                    <!-- Tecrübe Çubuğu -->
+                    <GridLayout row="2" columns="*, auto" class="progress-container mt-1">
+                        <StackLayout col="0" class="progress-bar">
+                            <StackLayout class="progress-fill exp-bar" width="{{ (tecrube / maxTecrube * 100) + '%' }}" />
+                        </StackLayout>
+                        <Label col="1" text="{{ tecrube + '/' + maxTecrube }}" class="progress-text" />
+                    </GridLayout>
+                </GridLayout>
+            </StackLayout>
+
+            <!-- Oyun Alanı -->
+            <ScrollView row="1" class="game-area">
+                <StackLayout>
+                    <!-- Sahne Görseli -->
+                    <GridLayout class="scene-container">
+                        <Image src="{{ mevcutSahne }}" class="scene-image" stretch="aspectFill" />
+                        <StackLayout class="scene-overlay">
+                            <Label text="{{ sahneBilgisi }}" class="scene-info" textWrap="true" />
+                        </StackLayout>
+                    </GridLayout>
+
+                    <!-- Hikaye Metni -->
+                    <StackLayout class="story-container">
+                        <Label text="{{ oyunMetni }}" textWrap="true" class="story-text" />
+                    </StackLayout>
+
+                    <!-- Envanter Özeti -->
+                    <GridLayout columns="*, *, *" class="inventory-summary">
+                        <StackLayout col="0" class="inventory-item">
+                            <Image src="~/assets/gold-coin.png" class="inventory-icon" />
+                            <Label text="{{ altin }}" class="text-yellow-500" />
+                        </StackLayout>
+                        <StackLayout col="1" class="inventory-item">
+                            <Image src="~/assets/health-potion.png" class="inventory-icon" />
+                            <Label text="{{ iksirSayisi }}" class="text-red-500" />
+                        </StackLayout>
+                        <StackLayout col="2" class="inventory-item">
+                            <Image src="~/assets/mana-potion.png" class="inventory-icon" />
+                            <Label text="{{ manaIksiriSayisi }}" class="text-blue-500" />
+                        </StackLayout>
+                    </GridLayout>
+                </StackLayout>
+            </ScrollView>
+
+            <!-- Aksiyonlar -->
+            <GridLayout row="2" rows="auto, auto" columns="*, *, *" class="actions-container">
+                <!-- Ana Aksiyonlar -->
+                <Button col="0" text="Saldır" tap="{{ saldir }}" class="action-button attack-button" />
+                <Button col="1" text="Büyü" tap="{{ buyuKullan }}" class="action-button magic-button" />
+                <Button col="2" text="İksir" tap="{{ iksirKullan }}" class="action-button potion-button" />
+                
+                <!-- İkincil Aksiyonlar -->
+                <Button row="1" col="0" text="Görev" tap="{{ gorevGoster }}" class="action-button quest-button" />
+                <Button row="1" col="1" text="Envanter" tap="{{ envaterGoster }}" class="action-button inventory-button" />
+                <Button row="1" col="2" text="Harita" tap="{{ haritaGoster }}" class="action-button map-button" />
+            </GridLayout>
+        </GridLayout>
+    </GridLayout>
+</Page>

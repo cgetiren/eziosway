@@ -1,0 +1,233 @@
+/* Genel Stiller */
+.action-bar {
+    background: linear-gradient(to right, #2c3e50, #3498db);
+    color: white;
+}
+
+.action-bar-title {
+    font-size: 20;
+    font-weight: bold;
+    color: white;
+}
+
+/* Karakter Seçim Ekranı */
+.character-select {
+    padding: 16;
+    background-color: #2c3e50;
+}
+
+.section-title {
+    color: #ecf0f1;
+    font-size: 24;
+    font-weight: bold;
+    margin: 16 0;
+    text-align: center;
+}
+
+.race-selection, .class-selection {
+    margin: 16 0;
+}
+
+.race-option, .class-option {
+    background-color: #34495e;
+    border-radius: 8;
+    margin: 8;
+    padding: 16;
+    align-items: center;
+}
+
+.race-option.selected, .class-option.selected {
+    background-color: #2980b9;
+    border-width: 2;
+    border-color: #3498db;
+}
+
+.race-image, .class-image {
+    width: 100;
+    height: 100;
+    border-radius: 50;
+    margin-bottom: 8;
+}
+
+.race-name, .class-name {
+    color: #ecf0f1;
+    font-size: 18;
+    font-weight: bold;
+    margin: 4 0;
+}
+
+.race-desc, .class-stats {
+    color: #bdc3c7;
+    font-size: 14;
+    text-align: center;
+}
+
+.name-selection {
+    margin: 16 0;
+}
+
+.character-name-input {
+    background-color: #34495e;
+    color: #ecf0f1;
+    font-size: 18;
+    padding: 12;
+    border-radius: 8;
+    margin: 8 0;
+}
+
+.start-button {
+    background: linear-gradient(to bottom, #e74c3c, #c0392b);
+    color: white;
+    font-size: 20;
+    font-weight: bold;
+    padding: 16;
+    border-radius: 8;
+    margin: 16 0;
+}
+
+/* Karakter Bilgileri */
+.bg-gradient {
+    background: linear-gradient(to bottom, #2c3e50, #34495e);
+}
+
+.character-avatar {
+    border-radius: 30;
+    border-width: 2;
+    border-color: #e74c3c;
+}
+
+.character-name {
+    font-weight: bold;
+    color: #ecf0f1;
+}
+
+/* Durum Çubukları */
+.progress-container {
+    margin: 4 0;
+}
+
+.progress-bar {
+    height: 20;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 10;
+}
+
+.health-bar {
+    background: linear-gradient(to right, #e74c3c, #c0392b);
+}
+
+.mana-bar {
+    background: linear-gradient(to right, #3498db, #2980b9);
+}
+
+.exp-bar {
+    background: linear-gradient(to right, #f1c40f, #f39c12);
+}
+
+.progress-text {
+    color: white;
+    font-size: 14;
+    margin-left: 8;
+}
+
+/* Oyun Alanı */
+.game-area {
+    background-color: #ecf0f1;
+}
+
+.scene-container {
+    height: 300;
+}
+
+.scene-image {
+    border-radius: 8;
+}
+
+.scene-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 16;
+}
+
+.scene-info {
+    color: white;
+    font-size: 16;
+}
+
+/* Hikaye Bölümü */
+.story-container {
+    padding: 16;
+    background-color: white;
+    border-radius: 8;
+    margin: 8;
+}
+
+.story-text {
+    font-size: 16;
+    color: #2c3e50;
+    line-height: 1.5;
+}
+
+/* Envanter */
+.inventory-summary {
+    padding: 8;
+    background-color: white;
+    border-radius: 8;
+    margin: 8;
+}
+
+.inventory-item {
+    align-items: center;
+}
+
+.inventory-icon {
+    width: 32;
+    height: 32;
+}
+
+/* Aksiyon Butonları */
+.actions-container {
+    padding: 8;
+    background-color: #34495e;
+}
+
+.action-button {
+    margin: 4;
+    border-radius: 8;
+    font-weight: bold;
+    height: 50;
+}
+
+.attack-button {
+    background: linear-gradient(to bottom, #e74c3c, #c0392b);
+    color: white;
+}
+
+.magic-button {
+    background: linear-gradient(to bottom, #3498db, #2980b9);
+    color: white;
+}
+
+.potion-button {
+    background: linear-gradient(to bottom, #2ecc71, #27ae60);
+    color: white;
+}
+
+.quest-button {
+    background: linear-gradient(to bottom, #9b59b6, #8e44ad);
+    color: white;
+}
+
+.inventory-button {
+    background: linear-gradient(to bottom, #e67e22, #d35400);
+    color: white;
+}
+
+.map-button {
+    background: linear-gradient(to bottom, #95a5a6, #7f8c8d);
+    color: white;
+}
